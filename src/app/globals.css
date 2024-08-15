@@ -165,7 +165,7 @@ body {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(to right, #bb358f 0%, #1494F1 100%);
+  background: linear-gradient(to right, #00fffb  0%, #c8ff01 100%);
   border-radius: 32px;
   z-index: -1;
   transition: background-position 0.3s ease;
@@ -193,7 +193,7 @@ body {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(to right, #bb358f 0%, #0095ff 100%);
+  background: linear-gradient(to right, #00fffb  0%, #c8ff01 100%);
   border-radius: 32px;
   z-index: -1;
   transition: background-position 0.3s ease;
@@ -213,7 +213,7 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #5C24FF  0%, #bb358f 38%, #5C24FF 76%, #bb358f 100%);
+  background: linear-gradient(90deg, #4000ff  0%, #00fffb 38%, #c8ff01 76%, #00a6ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
