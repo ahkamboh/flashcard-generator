@@ -7,7 +7,7 @@ export default function Home() {
     <div className="relative h-screen w-full">
       <nav className="z-50 absolute top-0 left-0 w-full flex justify-between p-7">
         <div className="Nephilm-400 text-2xl z-10">Deck Mind</div>
-        <div className="poppins-medium  font-bold gradient-border-button">Coming Soon</div>
+        <Link href={"/generation"} className="poppins-medium  font-bold gradient-border-button">Try Now!</Link>
       </nav>
       <div className="text-center px-4 z-50 absolute space-y-7  top-[50%] w-full left-[50%] -translate-x-1/2 -translate-y-1/2">
         <div className="grid gap-3">
@@ -29,7 +29,7 @@ export default function Home() {
               <div className="relative h-full w-10 bg-white/20"></div>
             </div>
           </button>
-          <div className="poppins-medium  font-bold gradient-border-button w-fit text-sm ">Coming Soon</div>
+          <Link href={"/generation"} className="poppins-medium  font-bold gradient-border-button w-fit text-sm ">Try Now!</Link>
         </div>
       </div>
       <div className="absolute  top-[50%] w-full left-[50%] -translate-x-1/2 -translate-y-1/2 h-full">
