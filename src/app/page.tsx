@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Spline from '@splinetool/react-spline/next';
 import Link from "next/link";
+import AnimatedText from "./components/AnimatedText";
+import SequentialText from "./components/SequentialText";
 
 export default function Home() {
   return (
@@ -37,6 +39,9 @@ export default function Home() {
           scene="https://prod.spline.design/Cd695Ckh0GnuY2jh/scene.splinecode"
         />
       </div>
+
+      
+
     </div>
   );
 }
