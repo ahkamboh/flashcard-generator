@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.3.1",
+    "@clerk/themes": "^2.1.20",
     "@splinetool/react-spline": "^4.0.0",
     "animejs": "^3.2.2",
     "groq-sdk": "^0.5.0",
