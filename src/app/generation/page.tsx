@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
+import Spline from '@splinetool/react-spline';
 import Groq from 'groq-sdk';
 
 interface Flashcard {
@@ -32,7 +33,7 @@ const BackComponent: React.FC<{ onClick: () => void; answer: string }> = ({ onCl
   </div>
 );
 
-const App = () => {
+const App: React.FC = () => {
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
   const [input, setInput] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -136,8 +137,13 @@ const App = () => {
   };
 
   return (
-    <div className="p-4  card-bg h-screen">
-      <form onSubmit={handleInputSubmit} className="mb-4">
+    <div className="relative p-4 card-bg h-screen">
+      <div className="absolute top-[50%] w-full left-[50%] -translate-x-1/2 -translate-y-1/2 h-full">
+        <Spline
+          scene="https://prod.spline.design/Cd695Ckh0GnuY2jh/scene.splinecode"
+        />
+      </div>
+      <form onSubmit={handleInputSubmit} className="mb-4 relative z-10">
         <textarea 
           value={input} 
           onChange={(e) => setInput(e.target.value)} 
@@ -146,14 +152,14 @@ const App = () => {
         />
         <button 
           type="submit" 
-          className="mt-2 px-4 py-2 gradient-border-button2 text-white font-semibold rounded-lg  duration-200"
+          className="mt-2 px-4 py-2 gradient-border-button2 text-white font-semibold rounded-lg duration-200"
           disabled={isLoading}
         >
           {isLoading ? 'Creating...' : 'Create Flashcards'}
         </button>
       </form>
       {flashcards.length > 0 ? (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center relative z-10">
           <ReactCardFlip isFlipped={flashcards[currentIndex].isFlipped}>
             <FrontComponent onClick={handleFlip} question={flashcards[currentIndex].question} />
             <BackComponent onClick={handleFlip} answer={flashcards[currentIndex].answer} />
@@ -176,7 +182,7 @@ const App = () => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center h-64">
+        <div className="flex justify-center items-center h-64 relative z-10">
           <p className="text-gray-500 text-lg">No flashcards available</p>
         </div>
       )}
