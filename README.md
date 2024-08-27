@@ -1,7 +1,4 @@
-Here's the updated README for your **DeckMind** project, incorporating the use of the GROQ SDK for generation and Stripe for payments:
-
-
-# DeckMind
+# DeckMind: Online Flashcard Maker & Flashcard App just like Quizlet
 
 DeckMind is an innovative flashcard application powered by AI, designed to enhance learning and retention through personalized study sessions. Leveraging advanced algorithms and a user-friendly interface, DeckMind helps users create, manage, and study custom flashcard decks for a wide range of subjects.
 
@@ -77,7 +74,7 @@ To get a local copy up and running follow these simple steps:
    yarn dev
    ```
 
-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   Open [http://localhost:3000](http://localhost:3000) or [deckmind](https://deckmind.vercel.app) with your browser to see the result.
 
 ## Usage
 
@@ -101,10 +98,6 @@ Contributions are what make the open-source community such an amazing place to l
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## Contact
-
-- **Your Name**: [Your LinkedIn](https://www.linkedin.com/in/your-profile)
-- **Project Link**: [DeckMind on GitHub](https://github.com/your-username/deckmind)
 
 ## Acknowledgments
 
