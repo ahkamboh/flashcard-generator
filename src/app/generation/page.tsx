@@ -2,18 +2,12 @@
 import React, { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import Spline from '@splinetool/react-spline';
-import Groq from 'groq-sdk';
 
 interface Flashcard {
   question: string;
   answer: string;
   isFlipped: boolean;
 }
-
-const groq = new Groq({ 
-  apiKey: '***REMOVED***', // Replace with your actual API key
-  dangerouslyAllowBrowser: true 
-});
 
 const FrontComponent: React.FC<{ onClick: () => void; question: string }> = ({ onClick, question }) => (
   <div 
@@ -58,21 +52,15 @@ const App: React.FC = () => {
 
   const generateFlashcardsForTopic = async (topic: string) => {
     try {
-      const response = await groq.chat.completions.create({
-        messages: [
-          { role: "system", content: "You are a helpful assistant that creates flashcards. Generate 10 question-answer pairs about the given topic. Format each pair as 'Question - Answer' on a new line." },
-          { role: "user", content: `Create flashcards about ${topic}` }
-        ],
-        model: "llama3-8b-8192",
-        max_tokens: 500
+      // The Groq key lives on the server; /api/generation makes the call.
+      const response = await fetch('/api/generation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input: `flashcards for ${topic}` })
       });
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
 
-      const content = response.choices[0]?.message?.content || "";
-      const lines = content.split('\n').filter(line => line.trim() !== '');
-      const newFlashcards = lines.map(line => {
-        const [question, answer] = line.split(' - ').map(part => part.trim());
-        return { question, answer, isFlipped: false };
-      });
+      const newFlashcards: Flashcard[] = await response.json();
 
       setFlashcards(newFlashcards);
       setCurrentIndex(0);
@@ -103,15 +91,15 @@ const App: React.FC = () => {
 
   const getAIAnswer = async (question: string): Promise<string> => {
     try {
-      const response = await groq.chat.completions.create({
-        messages: [
-          { role: "system", content: "You are a helpful assistant that provides concise answers to questions." },
-          { role: "user", content: `Please provide a concise answer to the following question: ${question}` }
-        ],
-        model: "llama3-8b-8192",
-        max_tokens: 100
+      const response = await fetch('/api/generation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
       });
-      return response.choices[0]?.message?.content || "Sorry, I couldn't generate an answer.";
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+      const data: { answer?: string } = await response.json();
+      return data.answer || "Sorry, I couldn't generate an answer.";
     } catch (error) {
       console.error('Error fetching AI answer:', error);
       return "Error: Couldn't generate an answer.";

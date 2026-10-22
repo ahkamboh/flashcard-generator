@@ -66,7 +66,15 @@ To get a local copy up and running follow these simple steps:
    yarn install
    ```
 
-3. **Run the development server**
+3. **Set your environment variables**
+
+   Copy `.env.example` to `.env.local` and fill in your own Groq and Clerk keys. `.env*` files are git-ignored, so keys stay out of the repo. On Vercel, add the same names under Project Settings, Environment Variables.
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. **Run the development server**
 
    ```bash
    npm run dev
